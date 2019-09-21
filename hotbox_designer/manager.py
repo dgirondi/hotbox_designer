@@ -1,9 +1,8 @@
-
+# coding=utf-8
 import json
 import os
 from functools import partial
 from PySide2 import QtWidgets, QtCore
-
 import hotbox_designer
 from hotbox_designer.commands import OPEN_COMMAND, CLOSE_COMMAND, SWITCH_COMMAND
 from hotbox_designer.reader import HotboxReader
@@ -11,12 +10,10 @@ from hotbox_designer.designer.application import HotboxEditor
 from hotbox_designer.applications import Nuke, Maya, Houdini
 from hotbox_designer.widgets import BoolCombo, Title, CommandButton
 from hotbox_designer.qtutils import icon
-from hotbox_designer.dialog import (
-    import_hotbox, export_hotbox, import_hotbox_link, CreateHotboxDialog,
-    CommandDisplayDialog, HotkeySetter, warning)
-from hotbox_designer.data import (
-    get_valid_name, TRIGGERING_TYPES, save_datas, load_hotboxes_datas,
-    hotbox_data_to_html, load_json, ensure_old_data_compatible)
+from hotbox_designer.dialog import (import_hotbox, export_hotbox, import_hotbox_link, CreateHotboxDialog,
+                                    CommandDisplayDialog, HotkeySetter, warning)
+from hotbox_designer.data import (get_valid_name, TRIGGERING_TYPES, save_datas, load_hotboxes_datas,
+                                  hotbox_data_to_html, load_json, ensure_old_data_compatible)
 
 
 hotboxes = {}

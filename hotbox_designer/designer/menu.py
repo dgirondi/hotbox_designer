@@ -1,3 +1,4 @@
+# coding=utf-8
 from PySide2 import QtGui, QtWidgets, QtCore
 from hotbox_designer.qtutils import icon
 

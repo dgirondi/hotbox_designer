@@ -1,3 +1,4 @@
+# coding=utf-8
 PYTHON = 'python'
 MEL = 'mel'
 NUKE_TCL = 'nuke tcl'

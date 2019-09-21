@@ -1,3 +1,4 @@
+# coding=utf-8
 from PySide2 import QtCore, QtGui
 from hotbox_designer.qtutils import VALIGNS, HALIGNS
 from hotbox_designer.geometry import grow_rect

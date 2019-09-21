@@ -1,4 +1,4 @@
-
+# coding=utf-8
 import os
 import json
 from hotbox_designer.templates import HOTBOX
@@ -6,7 +6,7 @@ from hotbox_designer.templates import HOTBOX
 
 DEFAULT_NAME = 'MyHotbox_{}'
 TRIGGERING_TYPES = 'click only', 'click or close'
-HOTBOX_REPRESENTATION = """\
+HOTBOX_REPRESENTATION = """
 <b>Name </b>{name}<br>
 <b>Submenu </b>{submenu}<br>
 <b>Triggering </b>{triggering}<br>

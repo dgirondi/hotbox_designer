@@ -1,3 +1,4 @@
+# coding=utf-8
 def move_elements_to_array_end(array, elements):
     return [e for e in array if e not in elements] + [e for e in elements]
 

@@ -1,3 +1,4 @@
+# coding=utf-8
 SQUARE_BUTTON = {
         'shape': 'square',  # or round
         'shape.left': 0.0,

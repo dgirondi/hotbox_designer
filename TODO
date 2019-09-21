@@ -20,7 +20,7 @@
     - reader: close on leave option added
     - reader: close with esc button
     - manager: play button added to command button
-    - editor: basic higlighting added for python and mel
+    - editor: basic highlighting added for python and mel
     - manager: add a "no hotbox selected" dialog
     - manager: add a shortcut setter
     - editor: add ctrl + a to select all
@@ -34,7 +34,7 @@
     - reader: Improve aiming system
     - misc: Create software context for Nuke
     - editor: Ctrl + D in editor
-    - editor: Improve item selection ergonomy in editor
+    - editor: Improve item selection ergonomic in editor
 
     TO FIX
     - nothing currently
@@ -44,8 +44,8 @@
     - Undo stack
     - allow multiple key shortcut for maya
     - Debug delete
-    - Fixe right clic issue
-    - Fixe language selection
+    - Fix right click issue
+    - Fix language selection
     - Debug auto-save issue
     - color wheel
     - undo stack

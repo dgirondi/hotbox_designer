@@ -1,7 +1,8 @@
+# coding=utf-8
 import math
 from PySide2 import QtWidgets, QtGui, QtCore
 from hotbox_designer.qtutils import get_cursor
-from hotbox_designer.geometry import (get_relative_point, get_point_on_line, get_absolute_angle_c)
+from hotbox_designer.geometry import get_relative_point, get_point_on_line, get_absolute_angle_c
 
 
 CONICAL_GRADIENT = ((0.0, (0, 255, 255)),

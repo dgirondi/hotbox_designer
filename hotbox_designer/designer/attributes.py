@@ -1,10 +1,9 @@
+# coding=utf-8
 from functools import partial
 from PySide2 import QtCore, QtWidgets, QtGui
-
 from hotbox_designer.colorwheel import ColorDialog
 from hotbox_designer.qtutils import icon, VALIGNS, HALIGNS
-from hotbox_designer.widgets import (
-    Title, BoolCombo, WidgetToggler, FloatEdit, BrowseEdit, ColorEdit)
+from hotbox_designer.widgets import Title, BoolCombo, WidgetToggler, FloatEdit, BrowseEdit, ColorEdit
 from hotbox_designer.designer.highlighter import get_highlighter
 
 LEFT_CELL_WIDTH = 80
@@ -83,6 +82,7 @@ class AttributeEditor(QtWidgets.QWidget):
 
 
 class ShapeSettings(QtWidgets.QWidget):
+
     optionSet = QtCore.Signal(str, object)
     rectModified = QtCore.Signal(str, float)
 

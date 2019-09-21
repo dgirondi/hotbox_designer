@@ -1,8 +1,9 @@
+# coding=utf-8
 import os
 import json
 from PySide2 import QtWidgets
 from hotbox_designer.dialog import warning
-from hotbox_designer.languages import (MEL, PYTHON, NUKE_TCL, NUKE_EXPRESSION, HSCRIPT)
+from hotbox_designer.languages import MEL, PYTHON, NUKE_TCL, NUKE_EXPRESSION, HSCRIPT
 
 HOTBOXES_FILENAME = 'hotboxes.json'
 SHARED_HOTBOXES_FILENAME = 'shared_hotboxes.json'
@@ -20,7 +21,7 @@ class AbstractApplication(object):
         self.name = type(self).__name__
         folder = self.get_data_folder()
         self.local_file = os.path.join(folder, HOTBOXES_FILENAME)
-        self.shared_file = os.path.join(folder, SHARED_HOTBOXES_FILENAME)
+        self.shared_file = os.path.join(folder, SHARED_HOTBOXES_FILENAME)  # TODO: Replace for environment variable
         self.main_window = self.get_main_window()
         self.reader_parent = self.get_reader_parent()
         self.available_languages = self.get_available_languages()
@@ -125,6 +126,7 @@ class Maya(AbstractApplication):
 
 
 def format_command_for_mel(command):
+
     """
     cause cmds.nameCommand fail to set python command, this method
     embed the given command to a mel command call in "python" function.

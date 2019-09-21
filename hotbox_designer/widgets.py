@@ -1,3 +1,4 @@
+# coding=utf-8
 from PySide2 import QtGui, QtCore, QtWidgets
 from hotbox_designer.qtutils import icon
 from hotbox_designer.colorwheel import ColorDialog

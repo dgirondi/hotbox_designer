@@ -1,3 +1,4 @@
+# coding=utf-8
 from PySide2 import QtWidgets, QtCore, QtGui
 from hotbox_designer.interactive import Shape
 from hotbox_designer.qtutils import get_cursor

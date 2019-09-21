@@ -1,3 +1,4 @@
+# coding=utf-8
 import keyword
 from PySide2 import QtGui, QtCore
 from hotbox_designer.languages import PYTHON, MEL

@@ -1,14 +1,13 @@
+# coding=utf-8
 from functools import partial
 from PySide2 import QtWidgets, QtCore
-
 from hotbox_designer.templates import SQUARE_BUTTON, TEXT, BACKGROUND
 from hotbox_designer.interactive import Shape
 from hotbox_designer.geometry import get_combined_rects
 from hotbox_designer.qtutils import set_shortcut
 from hotbox_designer.data import copy_hotbox_data
-from hotbox_designer.arrayutils import (
-    move_elements_to_array_end, move_elements_to_array_begin,
-    move_up_array_elements, move_down_array_elements)
+from hotbox_designer.arrayutils import (move_elements_to_array_end, move_elements_to_array_begin,
+                                        move_up_array_elements, move_down_array_elements)
 
 from .editarea import ShapeEditArea
 from .menu import MenuWidget
@@ -277,7 +276,7 @@ class HotboxEditor(QtWidgets.QWidget):
             self.undo_manager.reset_stacks()
 
 
-class UndoManager():
+class UndoManager:
     def __init__(self, data):
         self._current_state = data
         self._modified = False
@@ -290,7 +289,7 @@ class UndoManager():
 
     def undo(self):
         if not self._undo_stack:
-            print('no undostack')
+            print('no undo stack')
             return False
         self._redo_stack.append(copy_hotbox_data(self._current_state))
         self._current_state = copy_hotbox_data(self._undo_stack[-1])

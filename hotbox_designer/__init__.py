@@ -1,3 +1,4 @@
+# coding=utf-8
 import os
 import json
 from hotbox_designer.reader import HotboxWidget
