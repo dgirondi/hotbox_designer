@@ -21,7 +21,7 @@ class AbstractApplication(object):
         self.name = type(self).__name__
         folder = self.get_data_folder()
         self.local_file = os.path.join(folder, HOTBOXES_FILENAME)
-        self.shared_file = os.path.join(folder, SHARED_HOTBOXES_FILENAME)  # TODO: Replace for environment variable
+        self.shared_file = os.environ['shared_hotboxes']
         self.main_window = self.get_main_window()
         self.reader_parent = self.get_reader_parent()
         self.available_languages = self.get_available_languages()
