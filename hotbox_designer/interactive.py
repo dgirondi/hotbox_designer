@@ -7,7 +7,7 @@ from hotbox_designer.painting import draw_selection_square, draw_manipulator, ge
 from hotbox_designer.languages import execute_code
 
 
-class SelectionSquare():
+class SelectionSquare:
     def __init__(self):
         self.rect = None
         self.handling = False
@@ -29,7 +29,7 @@ class SelectionSquare():
         draw_selection_square(painter, self.rect)
 
 
-class Manipulator():
+class Manipulator:
     def __init__(self):
         self.rect = None
         self._is_hovered = False
@@ -96,7 +96,7 @@ def get_shape_rect_from_options(options):
             options['shape.height'])
 
 
-class Shape():
+class Shape:
     def __init__(self, options):
         self.hovered = False
         self.clicked = False

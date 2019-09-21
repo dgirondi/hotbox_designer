@@ -184,7 +184,7 @@ def relative(value, in_min, in_max, out_min, out_max):
     factor = (value - in_min) / (in_max - in_min)
     width = out_max - out_min
 
-    return out_min + (width * (factor))
+    return out_min + (width * factor)
 
 
 def distance(a, b):
@@ -386,7 +386,7 @@ def resize_rect_with_direction(rect, cursor, direction, force_square=False):
                 rect.setWidth(rect.height())
 
 
-class Transform():
+class Transform:
     def __init__(self):
         self.snap = None
         self.direction = None

@@ -52,9 +52,7 @@ def save_datas(filename, hotboxes_data):
 
 
 def copy_hotbox_data(data):
-    copied = {}
-    copied['general'] = data['general'].copy()
-    copied['shapes'] = [shape.copy() for shape in data['shapes']]
+    copied = {'general': data['general'].copy(), 'shapes': [shape.copy() for shape in data['shapes']]}
     return copied
 
 

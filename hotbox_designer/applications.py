@@ -12,7 +12,7 @@ SETMODE_SWITCH_ON_PRESS = 'switch on press'
 
 
 def execute(command):
-    exec(command)
+    exec command
 
 
 class AbstractApplication(object):

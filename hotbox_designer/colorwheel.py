@@ -57,9 +57,6 @@ class ColorWheel(QtWidgets.QWidget):
         self._current_tool = None
         self._angle = 180
         self.setFixedSize(100, 100)
-        self.initUI()
-
-    def initUI(self):
         self._conicalGradient = QtGui.QConicalGradient(
             self.width() / 2, self.height() / 2, 180)
         for pos, (r, g, b) in CONICAL_GRADIENT:
