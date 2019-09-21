@@ -6,6 +6,7 @@ from hotbox_designer.dialog import warning
 from hotbox_designer.languages import MEL, PYTHON, NUKE_TCL, NUKE_EXPRESSION, HSCRIPT
 
 HOTBOXES_FILENAME = 'hotboxes.json'
+SHARED_HOTBOXES_FILENAME = 'shared_hotboxes.json'
 SETMODE_PRESS_RELEASE = 'open on press | close on release'
 SETMODE_SWITCH_ON_PRESS = 'switch on press'
 
@@ -20,7 +21,7 @@ class AbstractApplication(object):
         self.name = type(self).__name__
         folder = self.get_data_folder()
         self.local_file = os.path.join(folder, HOTBOXES_FILENAME)
-        self.shared_file = os.environ['shared_hotboxes']
+        self.shared_file = os.path.join(os.environ['HOTBOXES_ROOT'], SHARED_HOTBOXES_FILENAME)
         self.main_window = self.get_main_window()
         self.reader_parent = self.get_reader_parent()
         self.available_languages = self.get_available_languages()
