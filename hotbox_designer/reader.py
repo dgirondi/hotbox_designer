@@ -17,7 +17,7 @@ class HotboxWidget(QtWidgets.QWidget):
     def set_hotbox_data(self, hotbox_data):
         self.shapes = [Shape(shape) for shape in hotbox_data['shapes']]
         self.interactive_shapes = [
-            s for s in self.shapes if s.is_interactive()]
+                s for s in self.shapes if s.is_interactive()]
         self.repaint()
 
     def clear(self):
@@ -54,7 +54,7 @@ class HotboxWidget(QtWidgets.QWidget):
 
     def mouseReleaseEvent(self, event):
         execute_hovered_shape(
-            self.shapes, self.left_clicked, self.right_clicked)
+                self.shapes, self.left_clicked, self.right_clicked)
 
         if event.button() == QtCore.Qt.RightButton:
             self.right_clicked = False
@@ -94,7 +94,7 @@ class HotboxReader(QtWidgets.QWidget):
         self.shapes = [Shape(data) for data in hotbox_data['shapes']]
         self.close_on_leave = settings['leaveclose']
         self.interactive_shapes = [
-            s for s in self.shapes if s.is_interactive()]
+                s for s in self.shapes if s.is_interactive()]
 
         self.left_clicked = False
         self.right_clicked = False
@@ -106,7 +106,7 @@ class HotboxReader(QtWidgets.QWidget):
         shapes = self.interactive_shapes
         if self.aiming is True:
             set_crossed_shapes_hovered(
-                self.center, get_cursor(self), shapes, get_cursor(self))
+                    self.center, get_cursor(self), shapes, get_cursor(self))
         else:
             set_shapes_hovered(shapes, get_cursor(self), self.clicked)
         if self.close_on_leave is True:
@@ -140,7 +140,7 @@ class HotboxReader(QtWidgets.QWidget):
 
     def mouseReleaseEvent(self, event):
         close = execute_hovered_shape(
-            self.shapes, self.left_clicked, self.right_clicked)
+                self.shapes, self.left_clicked, self.right_clicked)
 
         if event.button() == QtCore.Qt.RightButton:
             self.right_clicked = False
@@ -195,23 +195,24 @@ class HotboxReader(QtWidgets.QWidget):
         shapes = self.interactive_shapes
         if self.aiming is True:
             set_crossed_shapes_hovered(
-                self.center, get_cursor(self), shapes, get_cursor(self))
+                    self.center, get_cursor(self), shapes, get_cursor(self))
         else:
             set_shapes_hovered(shapes, get_cursor(self), self.clicked)
         self.repaint()
 
     def clear_aiming(self):
-        '''
+        """
         this method is a workaround because Qt seem optimize to keep a paint
         when a widget is hidden. The aiming shape have to been cleaned before
         the widget is hidden. In case of it's cleaned after, the shape can pop
         on the next hotbox opening.
-        '''
+        """
         if self.aiming is False:
             return
         self.aiming = False
         self.repaint()
         self.aiming = True
+
 
 def set_shapes_hovered(shapes, cursor, clicked):
     """
@@ -246,8 +247,8 @@ def set_crossed_shapes_hovered(point1, point2, shapes, cursor):
     # process distance between all shape crossed and
     # set the closest to the cursor hovered
     shapedistances = {
-        distance(shape.rect.center(), cursor): shape
-        for shape in cshapes}
+            distance(shape.rect.center(), cursor): shape
+            for shape in cshapes}
     shapedistances[min(shapedistances.keys())].hovered = True
 
 

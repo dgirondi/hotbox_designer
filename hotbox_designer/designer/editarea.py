@@ -1,4 +1,3 @@
-
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from hotbox_designer.interactive import Manipulator, SelectionSquare
@@ -51,7 +50,7 @@ class ShapeEditArea(QtWidgets.QWidget):
         for shape in self.shapes:
             shape.set_hovered(cursor)
 
-        if self.selection_square.handeling:
+        if self.selection_square.handling:
             self.selection_square.handle(cursor)
 
         if self.handeling is False:
@@ -108,17 +107,17 @@ class ShapeEditArea(QtWidgets.QWidget):
 
         shape = self.clicked_shape
         selection_update_conditions = (
-            self.handeling is False
-            or shape not in self.selection
-            and self.manipulator_moved is False)
+                self.handeling is False
+                or shape not in self.selection
+                and self.manipulator_moved is False)
         if selection_update_conditions:
             self.selection.set([shape] if shape else None)
             self.update_selection()
 
-        if self.selection_square.handeling:
+        if self.selection_square.handling:
             shapes = [
-                s for s in self.shapes
-                if s.rect.intersects(self.selection_square.rect)]
+                    s for s in self.shapes
+                    if s.rect.intersects(self.selection_square.rect)]
             if shapes:
                 self.selection.set(shapes)
                 rects = [shape.rect for shape in self.selection]
@@ -143,8 +142,8 @@ class ShapeEditArea(QtWidgets.QWidget):
             self.ctrl_pressed = True
 
         self.selection.mode = get_selection_mode(
-            shift=self.shit_pressed,
-            ctrl=self.ctrl_pressed)
+                shift=self.shit_pressed,
+                ctrl=self.ctrl_pressed)
 
         self.repaint()
 
@@ -157,8 +156,8 @@ class ShapeEditArea(QtWidgets.QWidget):
             self.ctrl_pressed = False
 
         self.selection.mode = get_selection_mode(
-            shift=self.shit_pressed,
-            ctrl=self.ctrl_pressed)
+                shift=self.shit_pressed,
+                ctrl=self.ctrl_pressed)
 
         self.repaint()
 

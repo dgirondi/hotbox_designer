@@ -2,9 +2,7 @@ import os
 import json
 from PySide2 import QtWidgets
 from hotbox_designer.dialog import warning
-from hotbox_designer.languages import (
-    MEL, PYTHON, NUKE_TCL, NUKE_EXPRESSION, HSCRIPT)
-
+from hotbox_designer.languages import (MEL, PYTHON, NUKE_TCL, NUKE_EXPRESSION, HSCRIPT)
 
 HOTBOXES_FILENAME = 'hotboxes.json'
 SHARED_HOTBOXES_FILENAME = 'shared_hotboxes.json'
@@ -79,65 +77,64 @@ class Maya(AbstractApplication):
     def get_available_set_hotkey_modes():
         return [SETMODE_PRESS_RELEASE, SETMODE_SWITCH_ON_PRESS]
 
-    def set_hotkey(
-            self, name, mode, sequence, open_cmd, close_cmd, switch_cmd):
+    def set_hotkey(self, name, mode, sequence, open_cmd, close_cmd, switch_cmd):
         from maya import cmds, mel
+
         current_hotkey_set = cmds.hotkeySet(current=True, query=True)
         if current_hotkey_set == 'Maya_Default':
-            msg = (
-                'The current hotkey set is locked,'
-                'change in the hotkey editor')
+            msg = 'The current hotkey set is locked, change in the hotkey editor'
             warning('Hotbox designer', msg)
-            return mel.eval("hotkeyEditorWindow;")
+            return mel.eval('hotkeyEditorWindow;')
 
         use_alt = 'Alt' in sequence
         use_ctrl = 'Ctrl' in sequence
         use_shift = 'Shift' in sequence
-        touch = sequence.split("+")[-1]
-        show_name = 'showHotbox_' + name
-        hide_name = 'hideHotbox_' + name
-        switch_name = 'switchHotbox_' + name
+        touch = sequence.split('+')[-1]
+        show_name = 'showHotbox_{n}'.format(n=name)
+        hide_name = 'hideHotbox_{n}'.format(n=name)
+        switch_name = 'switchHotbox_{n}'.format(n=name)
+
         if mode == SETMODE_PRESS_RELEASE:
-            cmds.nameCommand(
-                show_name,
-                annotation='show ' + name + ' hotbox',
-                command=format_command_for_mel(open_cmd),
-                sourceType="python")
-            cmds.nameCommand(
-                hide_name,
-                annotation='hide ' + name + ' hotbox',
-                command=format_command_for_mel(close_cmd),
-                sourceType="python")
-            cmds.hotkey(
-                keyShortcut=touch,
-                altModifier=use_alt,
-                ctrlModifier=use_ctrl,
-                shiftModifier=use_shift,
-                name=show_name,
-                releaseName=hide_name)
+            cmds.nameCommand(show_name,
+                             annotation='show {n} hotbox'.format(n=name),
+                             command=format_command_for_mel(open_cmd),
+                             sourceType='python')
+
+            cmds.nameCommand(hide_name,
+                             annotation='hide {n} hotbox'.format(n=name),
+                             command=format_command_for_mel(close_cmd),
+                             sourceType='python')
+
+            cmds.hotkey(keyShortcut=touch,
+                        altModifier=use_alt,
+                        ctrlModifier=use_ctrl,
+                        shiftModifier=use_shift,
+                        name=show_name,
+                        releaseName=hide_name)
         else:
-            cmds.nameCommand(
-                switch_name,
-                annotation='switch ' + name + ' hotbox',
-                command=format_command_for_mel(switch_cmd),
-                sourceType="python")
-            cmds.hotkey(
-                keyShortcut=touch,
-                altModifier=use_alt,
-                ctrlModifier=use_ctrl,
-                shiftModifier=use_shift,
-                name=switch_name)
+            cmds.nameCommand(switch_name,
+                             annotation='switch {n} hotbox'.format(n=name),
+                             command=format_command_for_mel(switch_cmd),
+                             sourceType='python')
+
+            cmds.hotkey(keyShortcut=touch,
+                        altModifier=use_alt,
+                        ctrlModifier=use_ctrl,
+                        shiftModifier=use_shift,
+                        name=switch_name)
 
 
 def format_command_for_mel(command):
-    '''
+    """
     cause cmds.nameCommand fail to set python command, this method
-    embed the given command to a mel command callin "python" function.
-    It put everylines in a single one cause mel is not supporting multi-lines
-    strings. Hopefully Autodesk gonna fixe this soon.
-    '''
+    embed the given command to a mel command call in "python" function.
+    It put every line in a single one cause mel is not supporting multi-lines
+    strings. Hopefully Autodesk gonna fix this soon.
+
+    """
+
     command = command.replace("\n", ";")
-    command = 'python("{}")'.format(command)
+    command = 'python("{c}")'.format(c=command)
     return command
 
 
@@ -165,40 +162,39 @@ class Nuke(AbstractApplication):
     def get_available_set_hotkey_modes():
         return [SETMODE_SWITCH_ON_PRESS]
 
-    def set_hotkey(
-            self, name, mode, sequence, open_cmd, close_cmd, switch_cmd):
+    def set_hotkey(self, name, mode, sequence, open_cmd, close_cmd, switch_cmd):
         self.save_hotkey(name, sequence, switch_cmd)
         self.create_menus()
 
     def get_hotkey_file(self):
-        hotkey_file = os.path.join(
-            self.get_data_folder(), 'hotbox_hotkey.json')
+        hotkey_file = os.path.join(self.get_data_folder(), 'hotbox_hotkey.json')
+
         return hotkey_file
 
     def load_hotkey(self):
         hotkey_file = self.get_hotkey_file()
         if not os.path.exists(hotkey_file):
             return {}
+
         with open(hotkey_file, 'r') as f:
             return json.load(f)
 
     def save_hotkey(self, name, sequence, command):
         data = self.load_hotkey()
-        data[name] = {
-            'sequence': sequence,
-            'command': command}
+        data[name] = {'sequence': sequence, 'command': command}
         with open(str(self.get_hotkey_file()), 'w+') as f:
             json.dump(data, f, indent=2)
 
     def create_menus(self):
         import nuke
+
         nuke_menu = nuke.menu('Nuke')
         menu = nuke_menu.addMenu('Hotbox Designer')
         hotkey_data = self.load_hotkey()
         for name, value in hotkey_data.items():
             menu.addCommand(
-                name='Hotboxes/{name}'.format(name=name),
-                command=str(value['command']), shortcut=value['sequence'])
+                    name='Hotboxes/{name}'.format(name=name),
+                    command=str(value['command']), shortcut=value['sequence'])
 
 
 class Houdini(AbstractApplication):
@@ -210,6 +206,7 @@ class Houdini(AbstractApplication):
     @staticmethod
     def get_main_window():
         import hou
+
         return hou.qt.mainWindow()
 
     @staticmethod
@@ -224,8 +221,8 @@ class Houdini(AbstractApplication):
     def get_available_set_hotkey_modes():
         return [SETMODE_SWITCH_ON_PRESS]
 
-    def set_hotkey(
-            self, name, mode, sequence, open_cmd, close_cmd, switch_cmd):
+    def set_hotkey(self, name, mode, sequence, open_cmd, close_cmd, switch_cmd):
         from hotbox_designer.qtutils import set_shortcut
         from functools import partial
+
         set_shortcut(sequence, self.main_window, partial(execute, switch_cmd))

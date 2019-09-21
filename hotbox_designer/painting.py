@@ -2,7 +2,6 @@ from PySide2 import QtCore, QtGui
 from hotbox_designer.qtutils import VALIGNS, HALIGNS
 from hotbox_designer.geometry import grow_rect
 
-
 MANIPULATOR_BORDER = 5
 SELECTION_COLOR = '#3388FF'
 

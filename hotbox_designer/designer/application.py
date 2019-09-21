@@ -1,4 +1,3 @@
-
 from functools import partial
 from PySide2 import QtWidgets, QtCore
 
@@ -21,6 +20,7 @@ class HotboxEditor(QtWidgets.QWidget):
 
     def __init__(self, hotbox_data, application, parent=None):
         super(HotboxEditor, self).__init__(parent, QtCore.Qt.Window)
+
         self.setWindowTitle("Hotbox editor")
         self.options = hotbox_data['general']
         self.application = application
@@ -93,19 +93,19 @@ class HotboxEditor(QtWidgets.QWidget):
 
     def copy(self):
         self.clipboard = [
-            s.options.copy() for s in self.shape_editor.selection]
+                s.options.copy() for s in self.shape_editor.selection]
 
     def paste(self):
         clipboad_copy = [s.copy() for s in self.clipboard]
         shape_datas = self.hotbox_data()['shapes'][:] + clipboad_copy
         hotbox_data = {
-            'general': self.options,
-            'shapes': shape_datas}
+                'general': self.options,
+                'shapes': shape_datas}
         self.set_hotbox_data(hotbox_data)
         self.undo_manager.set_data_modified(hotbox_data)
         self.hotboxDataModified.emit(hotbox_data)
         # select new shapes
-        shapes = self.shape_editor.shapes [-len(self.clipboard):]
+        shapes = self.shape_editor.shapes[-len(self.clipboard):]
         self.shape_editor.selection.replace(shapes)
         self.shape_editor.update_selection()
         self.shape_editor.repaint()
@@ -264,9 +264,7 @@ class HotboxEditor(QtWidgets.QWidget):
         self.set_data_modified()
 
     def hotbox_data(self):
-        return {
-            'general': self.options,
-            'shapes': [shape.options for shape in self.shape_editor.shapes]}
+        return {'general': self.options, 'shapes': [shape.options for shape in self.shape_editor.shapes]}
 
     def set_hotbox_data(self, hotbox_data, reset_stacks=False):
         self.options = hotbox_data['general']
@@ -292,7 +290,7 @@ class UndoManager():
 
     def undo(self):
         if not self._undo_stack:
-            print ('no undostack')
+            print('no undostack')
             return False
         self._redo_stack.append(copy_hotbox_data(self._current_state))
         self._current_state = copy_hotbox_data(self._undo_stack[-1])

@@ -1,49 +1,50 @@
 import os
 import json
 from PySide2 import QtWidgets
-from hotbox_designer.data import (
-    get_new_hotbox, get_valid_name, copy_hotbox_data, load_templates,
-    ensure_old_data_compatible)
+from hotbox_designer.data import (get_new_hotbox, get_valid_name, copy_hotbox_data,
+                                  load_templates, ensure_old_data_compatible)
 from hotbox_designer.widgets import TouchEdit, BoolCombo
 
 
 def warning(title, message, parent=None):
-    return QtWidgets.QMessageBox.warning(
-        parent,
-        title,
-        message,
-        QtWidgets.QMessageBox.Ok,
-        QtWidgets.QMessageBox.Ok)
+    return QtWidgets.QMessageBox.warning(parent, title, message, QtWidgets.QMessageBox.Ok, QtWidgets.QMessageBox.Ok)
 
 
 def import_hotbox():
-    filenames = QtWidgets.QFileDialog.getOpenFileName(
-        None, caption='Import hotbox', directory=os.path.expanduser("~"),
-        filter='*.json')
+    filenames = QtWidgets.QFileDialog.getOpenFileName(None,
+                                                      caption='Import hotbox',
+                                                      directory=os.path.expanduser("~"),
+                                                      filter='*.json')
     if not filenames:
         return
+
     with open(filenames[0], 'r') as f:
         return ensure_old_data_compatible(json.load(f))
 
 
 def import_hotbox_link():
-    filenames = QtWidgets.QFileDialog.getOpenFileName(
-        None, caption='Import hotbox', directory=os.path.expanduser("~"),
-        filter='*.json')
+    filenames = QtWidgets.QFileDialog.getOpenFileName(None,
+                                                      caption='Import hotbox',
+                                                      directory=os.path.expanduser("~"),
+                                                      filter='*.json')
     if filenames:
         return filenames[0]
+
     return None
 
 
 def export_hotbox(hotbox):
-    filenames = QtWidgets.QFileDialog.getSaveFileName(
-        None, caption='Export hotbox', directory=os.path.expanduser("~"),
-        filter='*.json')
+    filenames = QtWidgets.QFileDialog.getSaveFileName(None,
+                                                      caption='Export hotbox',
+                                                      directory=os.path.expanduser("~"),
+                                                      filter='*.json')
     filename = filenames[0]
     if not filename:
         return
+
     if not filename.lower().endswith('.json'):
         filename += '.json'
+
     with open(filename, 'w') as f:
         json.dump(hotbox, f, indent=2)
 

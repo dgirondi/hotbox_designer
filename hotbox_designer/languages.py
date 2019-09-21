@@ -1,4 +1,3 @@
-
 PYTHON = 'python'
 MEL = 'mel'
 NUKE_TCL = 'nuke tcl'
@@ -35,9 +34,9 @@ def execute_hscript(code):
 
 
 EXECUTORS = {
-    PYTHON: execute_python,
-    MEL: execute_mel,
-    NUKE_TCL: execute_nuke_tcl,
-    NUKE_EXPRESSION: execute_nuke_expression,
-    HSCRIPT: execute_hscript
-}
+        PYTHON: execute_python,
+        MEL: execute_mel,
+        NUKE_TCL: execute_nuke_tcl,
+        NUKE_EXPRESSION: execute_nuke_expression,
+        HSCRIPT: execute_hscript
+        }

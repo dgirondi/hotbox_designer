@@ -18,9 +18,7 @@ HOTBOX_REPRESENTATION = """\
 def get_new_hotbox(hotboxes):
     options = HOTBOX.copy()
     options.update({'name': get_valid_name(hotboxes)})
-    return {
-        'general': options,
-        'shapes': []}
+    return {'general': options, 'shapes': []}
 
 
 def get_valid_name(hotboxes, proposal=None):
@@ -29,7 +27,7 @@ def get_valid_name(hotboxes, proposal=None):
     name = proposal or DEFAULT_NAME.format(str(index).zfill(2))
     while name in names:
         if proposal:
-            name = proposal + "_" + str(index).zfill(2)
+            name = '{p}_{i}'.format(p=proposal, i=str(index).zfill(2))
         else:
             name = DEFAULT_NAME.format(str(index).zfill(2))
         index += 1
@@ -62,8 +60,8 @@ def copy_hotbox_data(data):
 
 def ensure_old_data_compatible(data):
     """
-    Tests and update datas done with old version of the script
-    This function contain all the data structure history to convertion
+    Tests and update data done with old version of the script
+    This function contain all the data structure history to conversion
     """
     try:
         del data['submenu']

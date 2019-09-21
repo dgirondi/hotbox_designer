@@ -352,13 +352,8 @@ class HotboxManager(QtWidgets.QWidget):
             application=self.application.name)
         if result == QtWidgets.QDialog.Rejected:
             return
-        self.application.set_hotkey(
-            name=name,
-            mode=dialog.mode(),
-            sequence=dialog.get_key_sequence(),
-            open_cmd=open_cmd,
-            close_cmd=CLOSE_COMMAND.format(name=name),
-            switch_cmd=switch_cmd)
+        self.application.set_hotkey(name=name, mode=dialog.mode(), sequence=dialog.get_key_sequence(),
+                                    open_cmd=open_cmd, close_cmd=CLOSE_COMMAND.format(name=name), switch_cmd=switch_cmd)
 
     def _call_export(self):
         hotbox = self.get_selected_hotbox()

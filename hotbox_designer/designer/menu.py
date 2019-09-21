@@ -23,6 +23,7 @@ class MenuWidget(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super(MenuWidget, self).__init__(parent=parent)
+
         self.delete = QtWidgets.QAction(icon('delete.png'), '', self)
         self.delete.setToolTip('Delete selection')
         self.delete.triggered.connect(self.deleteRequested.emit)
@@ -156,6 +157,7 @@ class MenuWidget(QtWidgets.QWidget):
         y = int(self.snapy.text()) if self.snapy.text() else 1
         x = x if x > 0 else 1
         y = y if y > 0 else 1
+
         return x, y
 
     def snap_value_changed(self, _):
@@ -178,4 +180,5 @@ class MenuWidget(QtWidgets.QWidget):
     def get_size(self):
         width = int(self.hbwidth.text()) if self.hbwidth.text() else 1
         height = int(self.hbheight.text()) if self.hbheight.text() else 1
+
         return QtCore.QSize(width, height)

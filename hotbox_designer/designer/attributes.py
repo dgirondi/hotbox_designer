@@ -7,7 +7,6 @@ from hotbox_designer.widgets import (
     Title, BoolCombo, WidgetToggler, FloatEdit, BrowseEdit, ColorEdit)
 from hotbox_designer.designer.highlighter import get_highlighter
 
-
 LEFT_CELL_WIDTH = 80
 SHAPE_TYPES = 'square', 'round'
 
@@ -19,6 +18,7 @@ class AttributeEditor(QtWidgets.QWidget):
 
     def __init__(self, application, parent=None):
         super(AttributeEditor, self).__init__(parent)
+
         self.application = application
         self.widget = QtWidgets.QWidget()
 
@@ -88,6 +88,7 @@ class ShapeSettings(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super(ShapeSettings, self).__init__(parent)
+
         self.shape = QtWidgets.QComboBox()
         self.shape.addItems(SHAPE_TYPES)
         self.shape.currentIndexChanged.connect(self.shape_changed)
@@ -150,6 +151,7 @@ class ImageSettings(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super(ImageSettings, self).__init__(parent)
+
         self.path = BrowseEdit()
         self.path.valueSet.connect(partial(self.optionSet.emit, 'image.path'))
 

@@ -3,15 +3,7 @@ from PySide2 import QtCore
 
 POINT_RADIUS = 8
 POINT_OFFSET = 4
-DIRECTIONS = [
-    'top_left',
-    'bottom_left',
-    'top_right',
-    'bottom_right',
-    'left',
-    'right',
-    'top',
-    'bottom']
+DIRECTIONS = ['top_left', 'bottom_left', 'top_right', 'bottom_right', 'left', 'right', 'top', 'bottom']
 
 
 def get_topleft_rect(rect):
@@ -25,11 +17,12 @@ def get_topleft_rect(rect):
     """
     if not rect:
         return None
+
     point = rect.topLeft()
-    return QtCore.QRectF(
-        point.x() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        point.y() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        POINT_RADIUS, POINT_RADIUS)
+    return QtCore.QRectF(point.x() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         point.y() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         POINT_RADIUS,
+                         POINT_RADIUS)
 
 
 def get_bottomleft_rect(rect):
@@ -44,11 +37,12 @@ def get_bottomleft_rect(rect):
     """
     if not rect:
         return None
+
     point = rect.bottomLeft()
-    return QtCore.QRectF(
-        point.x() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        point.y() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        POINT_RADIUS, POINT_RADIUS)
+    return QtCore.QRectF(point.x() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         point.y() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         POINT_RADIUS,
+                         POINT_RADIUS)
 
 
 def get_topright_rect(rect):
@@ -62,11 +56,12 @@ def get_topright_rect(rect):
     """
     if not rect:
         return None
+
     point = rect.topRight()
-    return QtCore.QRectF(
-        point.x() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        point.y() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        POINT_RADIUS, POINT_RADIUS)
+    return QtCore.QRectF(point.x() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         point.y() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         POINT_RADIUS,
+                         POINT_RADIUS)
 
 
 def get_bottomright_rect(rect):
@@ -81,11 +76,12 @@ def get_bottomright_rect(rect):
     """
     if not rect:
         return None
+
     point = rect.bottomRight()
-    return QtCore.QRectF(
-        point.x() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        point.y() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        POINT_RADIUS, POINT_RADIUS)
+    return QtCore.QRectF(point.x() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         point.y() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         POINT_RADIUS,
+                         POINT_RADIUS)
 
 
 def get_left_side_rect(rect):
@@ -99,11 +95,12 @@ def get_left_side_rect(rect):
     """
     if not rect:
         return None
+
     top = rect.top() + (rect.height() / 2.0)
-    return QtCore.QRectF(
-        rect.left() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        top - (POINT_RADIUS / 2.0),
-        POINT_RADIUS, POINT_RADIUS)
+    return QtCore.QRectF(rect.left() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         top - (POINT_RADIUS / 2.0),
+                         POINT_RADIUS,
+                         POINT_RADIUS)
 
 
 def get_right_side_rect(rect):
@@ -117,11 +114,12 @@ def get_right_side_rect(rect):
     """
     if not rect:
         return None
+
     top = rect.top() + (rect.height() / 2.0)
-    return QtCore.QRectF(
-        rect.right() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        top - (POINT_RADIUS / 2.0) ,
-        POINT_RADIUS, POINT_RADIUS)
+    return QtCore.QRectF(rect.right() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         top - (POINT_RADIUS / 2.0),
+                         POINT_RADIUS,
+                         POINT_RADIUS)
 
 
 def get_top_side_rect(rect):
@@ -135,10 +133,11 @@ def get_top_side_rect(rect):
     """
     if not rect:
         return None
-    return QtCore.QRectF(
-        rect.left() + (rect.width() / 2.0) - (POINT_RADIUS / 2.0),
-        rect.top() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        POINT_RADIUS, POINT_RADIUS)
+
+    return QtCore.QRectF(rect.left() + (rect.width() / 2.0) - (POINT_RADIUS / 2.0),
+                         rect.top() - (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         POINT_RADIUS,
+                         POINT_RADIUS)
 
 
 def get_bottom_side_rect(rect):
@@ -153,20 +152,21 @@ def get_bottom_side_rect(rect):
     """
     if not rect:
         return None
-    return QtCore.QRectF(
-        rect.left() + (rect.width() / 2.0) - (POINT_RADIUS / 2.0),
-        rect.bottom() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
-        POINT_RADIUS, POINT_RADIUS)
+
+    return QtCore.QRectF(rect.left() + (rect.width() / 2.0) - (POINT_RADIUS / 2.0),
+                         rect.bottom() + (POINT_RADIUS / 2.0) - POINT_OFFSET,
+                         POINT_RADIUS,
+                         POINT_RADIUS)
 
 
 def grow_rect(rect, value):
     if not rect:
         return None
-    return QtCore.QRectF(
-        rect.left() - value,
-        rect.top() - value,
-        rect.width() + (value * 2),
-        rect.height() + (value * 2))
+
+    return QtCore.QRectF(rect.left() - value,
+                         rect.top() - value,
+                         rect.width() + (value * 2),
+                         rect.height() + (value * 2))
 
 
 def relative(value, in_min, in_max, out_min, out_max):
@@ -182,24 +182,29 @@ def relative(value, in_min, in_max, out_min, out_max):
     """
     factor = (value - in_min) / (in_max - in_min)
     width = out_max - out_min
+
     return out_min + (width * (factor))
 
 
 def distance(a, b):
     """ return distance between two points """
-    x = (b.x() - a.x())**2
-    y = (b.y() - a.y())**2
+
+    x = (b.x() - a.x()) ** 2
+    y = (b.y() - a.y()) ** 2
+
     return math.sqrt(abs(x + y))
 
 
 def get_relative_point(rect, point):
     x = point.x() - rect.left()
     y = point.y() - rect.top()
+
     return QtCore.QPoint(x, y)
 
 
 def get_quarter(a, b, c):
     quarter = None
+
     if b.y() <= a.y() and b.x() < c.x():
         quarter = 0
     elif b.y() < a.y() and b.x() >= c.x():
@@ -208,12 +213,14 @@ def get_quarter(a, b, c):
         quarter = 2
     elif b.y() >= a.y() and b.x() <= c.x():
         quarter = 3
+
     return quarter
 
 
 def get_point_on_line(angle, ray):
     x = 50 + ray * math.cos(float(angle))
     y = 50 + ray * math.sin(float(angle))
+
     return QtCore.QPoint(x, y)
 
 
@@ -223,6 +230,7 @@ def get_angle_c(a, b, c):
 
 def get_absolute_angle_c(a, b, c):
     quarter = get_quarter(a, b, c)
+
     try:
         angle_c = get_angle_c(a, b, c)
     except ZeroDivisionError:
@@ -239,11 +247,10 @@ def get_absolute_angle_c(a, b, c):
 
 
 def segment_cross_rect(p1, p2, rect):
-    return (
-        segment_cross_segment(p1, p2, rect.topLeft(), rect.topRight()) or
-        segment_cross_segment(p1, p2, rect.topRight(), rect.bottomRight()) or
-        segment_cross_segment(p1, p2, rect.bottomRight(), rect.bottomLeft()) or
-        segment_cross_segment(p1, p2, rect.bottomLeft(), rect.topLeft()))
+    return (segment_cross_segment(p1, p2, rect.topLeft(), rect.topRight()) or
+            segment_cross_segment(p1, p2, rect.topRight(), rect.bottomRight()) or
+            segment_cross_segment(p1, p2, rect.bottomRight(), rect.bottomLeft()) or
+            segment_cross_segment(p1, p2, rect.bottomLeft(), rect.topLeft()))
 
 
 def segment_cross_segment(p1, p2, p3, p4):
@@ -258,19 +265,22 @@ def segment_cross_segment(p1, p2, p3, p4):
     if t1 < 0 or t1 > 1:
         return False
 
-    t2 = (dx1 * dy3 - dy1 * dx3) /d
+    t2 = (dx1 * dy3 - dy1 * dx3) / d
     if t2 < 0 or t2 > 1:
-       return False
+        return False
+
     return True
 
 
 def proportional_rect(rect, percent=None):
     """ return a scaled rect with a percentage """
+
     factor = float(percent) / 100
     width = rect.width() * factor
     height = rect.height() * factor
     left = rect.left() + round((rect.width() - width) / 2)
     top = rect.top() + round((rect.height() - height) / 2)
+
     return QtCore.QRect(left, top, width, height)
 
 
@@ -292,31 +302,31 @@ def resize_rect_with_reference(rect, in_reference_rect, out_reference_rect):
     the function process the fourth rect,
     it scale the A rect using the B, C scales as reference
     """
-    
+
     left = relative(
-        value=rect.left(),
-        in_min=in_reference_rect.left(),
-        in_max=in_reference_rect.right(),
-        out_min=out_reference_rect.left(),
-        out_max=out_reference_rect.right())
+            value=rect.left(),
+            in_min=in_reference_rect.left(),
+            in_max=in_reference_rect.right(),
+            out_min=out_reference_rect.left(),
+            out_max=out_reference_rect.right())
     top = relative(
-        value=rect.top(),
-        in_min=in_reference_rect.top(),
-        in_max=in_reference_rect.bottom(),
-        out_min=out_reference_rect.top(),
-        out_max=out_reference_rect.bottom())
+            value=rect.top(),
+            in_min=in_reference_rect.top(),
+            in_max=in_reference_rect.bottom(),
+            out_min=out_reference_rect.top(),
+            out_max=out_reference_rect.bottom())
     right = relative(
-        value=rect.right(),
-        in_min=in_reference_rect.left(),
-        in_max=in_reference_rect.right(),
-        out_min=out_reference_rect.left(),
-        out_max=out_reference_rect.right())
+            value=rect.right(),
+            in_min=in_reference_rect.left(),
+            in_max=in_reference_rect.right(),
+            out_min=out_reference_rect.left(),
+            out_max=out_reference_rect.right())
     bottom = relative(
-        value=rect.bottom(),
-        in_min=in_reference_rect.top(),
-        in_max=in_reference_rect.bottom(),
-        out_min=out_reference_rect.top(),
-        out_max=out_reference_rect.bottom())
+            value=rect.bottom(),
+            in_min=in_reference_rect.top(),
+            in_max=in_reference_rect.bottom(),
+            out_min=out_reference_rect.top(),
+            out_max=out_reference_rect.bottom())
     rect.setCoords(left, top, right, bottom)
 
 
@@ -402,17 +412,14 @@ class Transform():
             x, y = snap(cursor.x(), cursor.y(), self.snap)
             cursor.setX(x)
             cursor.setY(y)
-        resize_rect_with_direction(
-            self.rect, cursor, self.direction, force_square=self.square)
+        resize_rect_with_direction(self.rect, cursor, self.direction, force_square=self.square)
         self.apply_relative_transformation(rects)
 
     def apply_relative_transformation(self, rects):
         for rect in rects:
-            resize_rect_with_reference(
-                rect, self.reference_rect, self.rect)
+            resize_rect_with_reference(rect, self.reference_rect, self.rect)
 
-        self.reference_rect = QtCore.QRectF(
-            self.rect.topLeft(), self.rect.bottomRight())
+        self.reference_rect = QtCore.QRectF(self.rect.topLeft(), self.rect.bottomRight())
 
     def move(self, rects, cursor):
         x = cursor.x() - self.reference_x
@@ -430,6 +437,7 @@ class Transform():
 def snap(x, y, snap):
     x = snap[0] * round(x / snap[0])
     y = snap[1] * round(y / snap[1])
+
     return x, y
 
 
@@ -446,8 +454,10 @@ def get_combined_rects(rects):
     """
     if not rects:
         return None
+
     left = min([rect.left() for rect in rects])
     right = max([rect.right() for rect in rects])
     top = min([rect.top() for rect in rects])
     bottom = max([rect.bottom() for rect in rects])
+
     return QtCore.QRectF(left, top, right - left, bottom - top)

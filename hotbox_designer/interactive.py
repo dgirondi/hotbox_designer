@@ -12,17 +12,17 @@ from hotbox_designer.languages import execute_code
 class SelectionSquare():
     def __init__(self):
         self.rect = None
-        self.handeling = False
+        self.handling = False
 
     def clicked(self, cursor):
-        self.handeling = True
+        self.handling = True
         self.rect = QtCore.QRectF(cursor, cursor)
 
     def handle(self, cursor):
         self.rect.setBottomRight(cursor)
 
     def release(self):
-        self.handeling = False
+        self.handling = False
         self.rect = None
 
     def draw(self, painter):
@@ -49,9 +49,9 @@ class Manipulator():
 
     def handler_rects(self):
         return [
-            self._tl_corner_rect, self._bl_corner_rect, self._tr_corner_rect,
-            self._br_corner_rect, self._l_side_rect, self._r_side_rect,
-            self._t_side_rect, self._b_side_rect]
+                self._tl_corner_rect, self._bl_corner_rect, self._tr_corner_rect,
+                self._br_corner_rect, self._l_side_rect, self._r_side_rect,
+                self._t_side_rect, self._b_side_rect]
 
     def get_direction(self, cursor):
         if self.rect is None:
@@ -92,10 +92,10 @@ class Manipulator():
 
 def get_shape_rect_from_options(options):
     return QtCore.QRectF(
-        options['shape.left'],
-        options['shape.top'],
-        options['shape.width'],
-        options['shape.height'])
+            options['shape.left'],
+            options['shape.top'],
+            options['shape.width'],
+            options['shape.height'])
 
 
 class Shape():
@@ -151,7 +151,7 @@ class Shape():
         elif left is True and right is True:
             r_close = self.options['action.right.close']
             l_close = self.options['action.left.close']
-            return  r_close or l_close
+            return r_close or l_close
         return False
 
     def synchronize_image(self):
@@ -160,8 +160,8 @@ class Shape():
             self.image_rect = None
             return
         self.image_rect = QtCore.QRect(
-            self.rect.left(),
-            self.rect.top(),
-            self.options['image.width'],
-            self.options['image.height'])
+                self.rect.left(),
+                self.rect.top(),
+                self.options['image.width'],
+                self.options['image.height'])
         self.image_rect.moveCenter(self.rect.center().toPoint())

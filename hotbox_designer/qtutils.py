@@ -1,15 +1,14 @@
 import os
 from PySide2 import QtGui, QtWidgets, QtCore
 
-
 VALIGNS = {
-    'top': QtCore.Qt.AlignTop,
-    'center': QtCore.Qt.AlignVCenter,
-    'bottom': QtCore.Qt.AlignBottom}
+        'top': QtCore.Qt.AlignTop,
+        'center': QtCore.Qt.AlignVCenter,
+        'bottom': QtCore.Qt.AlignBottom}
 HALIGNS = {
-    'left': QtCore.Qt.AlignLeft,
-    'center': QtCore.Qt.AlignHCenter,
-    'right': QtCore.Qt.AlignRight}
+        'left': QtCore.Qt.AlignLeft,
+        'center': QtCore.Qt.AlignHCenter,
+        'right': QtCore.Qt.AlignRight}
 ICONDIR = os.path.dirname(__file__)
 
 

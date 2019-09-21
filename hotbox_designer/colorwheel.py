@@ -1,18 +1,16 @@
 import math
 from PySide2 import QtWidgets, QtGui, QtCore
 from hotbox_designer.qtutils import get_cursor
-from hotbox_designer.geometry import (
-    get_relative_point, get_point_on_line, get_absolute_angle_c)
+from hotbox_designer.geometry import (get_relative_point, get_point_on_line, get_absolute_angle_c)
 
 
-CONICAL_GRADIENT = (
-    (0.0, (0, 255, 255)),
-    (0.16, (0, 0, 255)),
-    (0.33, (255, 0, 255)),
-    (0.5, (255, 0, 0)),
-    (0.66, (255, 255, 0)),
-    (0.83, (0, 255, 0)),
-    (1.0, (0, 255, 255)))
+CONICAL_GRADIENT = ((0.0, (0, 255, 255)),
+                    (0.16, (0, 0, 255)),
+                    (0.33, (255, 0, 255)),
+                    (0.5, (255, 0, 0)),
+                    (0.66, (255, 255, 0)),
+                    (0.83, (0, 255, 0)),
+                    (1.0, (0, 255, 255)))
 TRANSPARENT = 0, 0, 0, 0
 BLACK = 'black'
 WHITE = 'white'
@@ -222,16 +220,16 @@ def degree_to_color(degree):
 
     r, g, b = 255.0, 255.0, 255.0
     contain_red = (
-        (degree >= 0.0 and degree <= 0.33)
-        or (degree >= 0.66 and degree <= 1.0))
+        (0.0 <= degree <= 0.33)
+        or (0.66 <= degree <= 1.0))
 
     if contain_red:
-        if degree >= 0.66 and degree <= 0.83:
+        if 0.66 <= degree <= 0.83:
             factor = degree - 0.66
             r = round(255 * (factor / .16))
-        if (degree > 0.0 and degree < 0.16) or (degree > 0.83 and degree < 1.0):
+        if (0.0 < degree < 0.16) or (0.83 < degree < 1.0):
             r = 255
-        elif degree >= 0.16 and degree <= 0.33:
+        elif 0.16 <= degree <= 0.33:
             factor = degree - 0.16
             r = 255 - round(255 * (factor / .16))
     else:
@@ -240,12 +238,12 @@ def degree_to_color(degree):
     r = r if r >= 0 else 0
 
     # GREEN
-    if degree >= 0.0 and degree <= 0.66:
-        if degree >= 0.0 and degree <= 0.16:
+    if 0.0 <= degree <= 0.66:
+        if 0.0 <= degree <= 0.16:
             g = round(255.0 * (degree / .16))
-        elif degree > 0.16 and degree < 0.5:
+        elif 0.16 < degree < 0.5:
             g = 255
-        if degree >= 0.5 and degree <= 0.66:
+        if 0.5 <= degree <= 0.66:
             factor = degree - 0.5
             g = 255 - round(255.0 * (factor / .16))
     else:
@@ -254,13 +252,13 @@ def degree_to_color(degree):
     g = g if g >= 0 else 0
 
     # BLUE
-    if degree >= 0.33 and degree <= 1.0:
-        if degree >= 0.33 and degree <= 0.5:
+    if 0.33 <= degree <= 1.0:
+        if 0.33 <= degree <= 0.5:
             factor = degree - 0.33
             b = round(255 * (factor / .16))
-        elif degree > 0.5 and degree < 0.83:
+        elif 0.5 < degree < 0.83:
             b = 255.0
-        if degree >= 0.83 and degree <= 1.0:
+        if 0.83 <= degree <= 1.0:
             factor = degree - 0.83
             b = 255.0 - round(255.0 * (factor / .16))
     else:

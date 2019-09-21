@@ -2,10 +2,8 @@ from PySide2 import QtGui, QtCore, QtWidgets
 from hotbox_designer.qtutils import icon
 from hotbox_designer.colorwheel import ColorDialog
 
-
 # don't use style sheet like that, find better design
-TOGGLER_STYLESHEET = (
-    'background: rgb(0, 0, 0, 75); text-align: left; font: bold')
+TOGGLER_STYLESHEET = 'background: rgb(0, 0, 0, 75); text-align: left; font: bold'
 
 
 class BoolCombo(QtWidgets.QComboBox):
@@ -13,6 +11,7 @@ class BoolCombo(QtWidgets.QComboBox):
 
     def __init__(self, state=True, parent=None):
         super(BoolCombo, self).__init__(parent)
+
         self.addItem('True')
         self.addItem('False')
         self.setCurrentText(str(state))
@@ -64,6 +63,7 @@ class BrowseEdit(QtWidgets.QWidget):
 class WidgetToggler(QtWidgets.QPushButton):
     def __init__(self, label, widget, parent=None):
         super(WidgetToggler, self).__init__(parent)
+
         self.setStyleSheet(TOGGLER_STYLESHEET)
         self.setText(' v ' + label)
         self.widget = widget
@@ -134,6 +134,7 @@ class FloatEdit(QtWidgets.QLineEdit):
 
     def __init__(self, minimum=None, maximum=None, parent=None):
         super(FloatEdit, self).__init__(parent)
+
         self.validator = QtGui.QDoubleValidator()
         if minimum is not None:
             self.validator.setBottom(minimum)
@@ -165,6 +166,7 @@ class FloatEdit(QtWidgets.QLineEdit):
 class Title(QtWidgets.QLabel):
     def __init__(self, title, parent=None):
         super(Title, self).__init__(parent)
+
         self.setFixedHeight(20)
         self.setStyleSheet('background: rgb(0, 0, 0, 25)')
         self.setText('<b>&nbsp;&nbsp;&nbsp;' + title)
@@ -179,8 +181,10 @@ class TouchEdit(QtWidgets.QLineEdit):
 class CommandButton(QtWidgets.QWidget):
     released = QtCore.Signal()
     playReleased = QtCore.Signal()
+
     def __init__(self, label, parent=None):
         super(CommandButton, self).__init__(parent)
+
         self.mainbutton = QtWidgets.QPushButton(label)
         self.mainbutton.released.connect(self.released.emit)
         self.playbutton = QtWidgets.QPushButton(icon('play.png'), '')

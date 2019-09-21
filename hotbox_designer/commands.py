@@ -1,4 +1,3 @@
-
 OPEN_COMMAND = """\
 import hotbox_designer
 from hotbox_designer import applications
