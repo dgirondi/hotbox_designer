@@ -6,7 +6,6 @@ from hotbox_designer.dialog import warning
 from hotbox_designer.languages import MEL, PYTHON, NUKE_TCL, NUKE_EXPRESSION, HSCRIPT
 
 HOTBOXES_FILENAME = 'hotboxes.json'
-SHARED_HOTBOXES_FILENAME = 'shared_hotboxes.json'
 SETMODE_PRESS_RELEASE = 'open on press | close on release'
 SETMODE_SWITCH_ON_PRESS = 'switch on press'
 
