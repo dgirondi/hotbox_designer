@@ -194,9 +194,9 @@ class Nuke(AbstractApplication):
         menu = nuke_menu.addMenu('Hotbox Designer')
         hotkey_data = self.load_hotkey()
         for name, value in hotkey_data.items():
-            menu.addCommand(
-                    name='Hotboxes/{name}'.format(name=name),
-                    command=str(value['command']), shortcut=value['sequence'])
+            menu.addCommand(name='Hotboxes/{name}'.format(name=name),
+                            command=str(value['command']),
+                            shortcut=value['sequence'])
 
 
 class Houdini(AbstractApplication):
